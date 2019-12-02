@@ -1,0 +1,233 @@
+//
+//  SignUpVC.swift
+//  employD
+//
+//  Created by Grant Levy on 11/30/19.
+//  Copyright © 2019 Grant Levy. All rights reserved.
+//
+
+import UIKit
+import Firebase
+
+class SignUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    var imageSelected = false
+    
+    
+    // Add Photo Button
+    let addPhotoButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(#imageLiteral(resourceName: "addPhoto2").withRenderingMode(.alwaysOriginal), for: .normal)
+        button.addTarget(self, action: #selector(handleSelectPhoto), for: .touchUpInside)
+        return button
+    }()
+    
+    // Name Text Box
+    let nameTextField: UITextField = {
+        let tf = UITextField()
+        tf.placeholder = "Full Name"
+        tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
+        tf.borderStyle = .roundedRect
+        tf.font = UIFont.systemFont(ofSize: 14)
+        tf.addTarget(self, action: #selector(formValidation), for: .editingChanged)
+        return tf
+    }()
+    
+    // Email Text Box
+    let emailTextField: UITextField = {
+        let tf = UITextField()
+        tf.placeholder = "Email"
+        tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
+        tf.borderStyle = .roundedRect
+        tf.font = UIFont.systemFont(ofSize: 14)
+        tf.autocapitalizationType = .none
+        tf.addTarget(self, action: #selector(formValidation), for: .editingChanged)
+        return tf
+    }()
+    
+    // Password Text Box
+    let passwordTextField: UITextField = {
+        let tf = UITextField()
+        tf.isSecureTextEntry = true
+        tf.placeholder = "Password"
+        tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
+        tf.borderStyle = .roundedRect
+        tf.font = UIFont.systemFont(ofSize: 14)
+        tf.addTarget(self, action: #selector(formValidation), for: .editingChanged)
+        return tf
+    }()
+    
+    // Phone Number Text Box
+    let phoneTextField: UITextField = {
+        let tf = UITextField()
+        tf.placeholder = "Phone Number"
+        tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
+        tf.borderStyle = .roundedRect
+        tf.font = UIFont.systemFont(ofSize: 14)
+        tf.addTarget(self, action: #selector(formValidation), for: .editingChanged)
+        return tf
+    }()
+    
+    let continueButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Continue", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = UIColor.lightGray // (red: 149/255, green: 204/255, blue: 244/255, alpha: 1)
+        button.layer.cornerRadius = 8
+        button.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
+        button.isEnabled = false
+        return button
+    }()
+    
+    let returnButton: UIButton = {
+        let button = UIButton(type: .system)
+        
+        let attributedTitle = NSMutableAttributedString(string: "Already have an account?   ", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16), NSAttributedStringKey.foregroundColor: UIColor.black])
+        attributedTitle.append(NSAttributedString(string: "Sign In", attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 16), NSAttributedStringKey.foregroundColor: UIColor.appCyan]))
+        
+        button.addTarget(self, action: #selector(handleShowLogin), for: .touchUpInside)
+        button.setAttributedTitle(attributedTitle, for: .normal)
+        return button
+    }()
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Background color
+        view.backgroundColor = .white
+        
+        view.addSubview(addPhotoButton)
+        addPhotoButton.anchor(top: view.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 40, paddingLeft: 40, paddingBottom: 0, paddingRight: 0, width: 140, height: 140)
+        addPhotoButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+    
+        configureViewComponents()
+        view.addSubview(returnButton)
+        returnButton.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 20, paddingRight: 0, width: 0, height: 50)
+        
+    }
+ 
+    @objc func handleShowLogin() {
+        _ = navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func handleSignUp() {
+        
+        // Properties
+        guard let email = emailTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        guard let fullName = nameTextField.text else { return }
+        guard let phoneNumber = phoneTextField.text else { return }
+    
+        Auth.auth().createUser(withEmail: email, password: password) { (authResult, error) in
+            
+            // Error handling
+            if let error = error {
+                print("Failed to create user with error: ", error.localizedDescription)
+                return
+            }
+            
+            // Set Profile Image
+            guard let profileImg = self.addPhotoButton.imageView?.image else { return }
+            
+            // Upload profile image
+            guard let uploadData = UIImageJPEGRepresentation(profileImg, 0.3) else { return }
+            
+            // Place image into Firebase
+            let filename = NSUUID().uuidString
+            let storageRef = Storage.storage().reference().child("profile_image").child(filename)
+
+            storageRef.putData(uploadData, metadata: nil) { (metadata, error) in
+                
+                // Handle error
+                if let error = error {
+                    print("Failed to upload image to Firebase Storage with error ", error.localizedDescription)
+                }
+                
+                // Profile image URL
+                storageRef.downloadURL { (downloadURL, error) in
+                    guard let profileImageURL = downloadURL?.absoluteString else {
+                        print("Profile image URL is nil")
+                        return
+                    }
+                
+                    guard let uid = authResult?.user.uid else { return }
+                    
+                    let dictionaryValues = ["name": fullName,
+                                            "phoneNumber": phoneNumber,
+                                            "profileImageURL": profileImageURL]
+                
+                    let values = [uid: dictionaryValues]
+                    
+                    // Save user info to database
+                    Database.database().reference().child("user").updateChildValues(values) { (error, ref) in
+                        print("Success!!!!!!")
+                    }
+                }
+            }
+            
+            // Success
+            print("Successfully created user with Firebase")
+            
+        }
+    }
+    
+    @objc func formValidation() {
+        guard
+            emailTextField.hasText,
+            passwordTextField.hasText,
+            nameTextField.hasText,
+            phoneTextField.hasText,
+            imageSelected == true else {
+                continueButton.isEnabled = false
+                continueButton.backgroundColor = UIColor.lightGray
+                return
+        }
+        
+        continueButton.isEnabled = true
+        continueButton.backgroundColor = UIColor.appCyan
+    }
+    
+    @objc func handleSelectPhoto() {
+        // Configure Image Selection
+        let imageSelector = UIImagePickerController()
+        imageSelector.delegate = self
+        imageSelector.allowsEditing = true
+        
+        // Present when pressed
+        self.present(imageSelector, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        guard let profileImage = info[UIImagePickerControllerEditedImage] as? UIImage else {
+            imageSelected = false
+            return
+        }
+    
+        // Image selected to true
+        imageSelected = true
+        
+        // Configure photo button with selected image
+        addPhotoButton.layer.cornerRadius = addPhotoButton.frame.width / 2
+        addPhotoButton.layer.masksToBounds = true
+        addPhotoButton.layer.borderColor = UIColor.black.cgColor
+        addPhotoButton.layer.borderWidth = 2
+        addPhotoButton.setImage(profileImage.withRenderingMode(.alwaysOriginal), for: .normal)
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func configureViewComponents() {
+        let stackView = UIStackView(arrangedSubviews: [nameTextField, emailTextField, passwordTextField, phoneTextField, continueButton])
+        stackView.axis = .vertical
+        stackView.spacing = 10
+        stackView.distribution = .fillProportionally
+        
+        view.addSubview(stackView)
+        stackView.anchor(top: addPhotoButton.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 175, paddingLeft: 40, paddingBottom: 0, paddingRight: 40, width: 0, height: 240)
+    }
+    
+}
+
+
+

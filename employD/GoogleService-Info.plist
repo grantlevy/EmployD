@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>740621088491-a0vb4i5fu208gtsm12vrc8pq57ptqtj4.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.740621088491-a0vb4i5fu208gtsm12vrc8pq57ptqtj4</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDjZr87hlC1tc80VSKdutQ3CMNC8L5bi3M</string>
+	<key>GCM_SENDER_ID</key>
+	<string>740621088491</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>Grant-Levy.employD</string>
+	<key>PROJECT_ID</key>
+	<string>employd-4d5a3</string>
+	<key>STORAGE_BUCKET</key>
+	<string>employd-4d5a3.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:740621088491:ios:a73c0c2c8e09d51a80b0ae</string>
+	<key>DATABASE_URL</key>
+	<string>https://employd-4d5a3.firebaseio.com</string>
+</dict>
+</plist>
