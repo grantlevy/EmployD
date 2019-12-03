@@ -9,11 +9,11 @@
 import UIKit
 import Firebase
 
-class SignUpEducationVC: UIViewController, UIImagePickerControllerDelegate {
+class SignUpReferenceVC: UIViewController, UIImagePickerControllerDelegate {
 
     let pageText: UILabel = {
         let l = UILabel()
-        l.text = "Education"
+        l.text = "References"
         l.font = UIFont.boldSystemFont(ofSize: 22)
         l.textAlignment = .center
         return l
@@ -26,33 +26,31 @@ class SignUpEducationVC: UIViewController, UIImagePickerControllerDelegate {
 //    }()
     
     // School Text Box
-    let schoolTextField: UITextField = {
+    let referenceTextField: UITextField = {
         let tf = UITextField()
-        tf.placeholder = "School Name"
+        tf.placeholder = "Reference Name"
         tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
         tf.borderStyle = .roundedRect
         tf.font = UIFont.systemFont(ofSize: 14)
-        tf.addTarget(self, action: #selector(formValidation), for: .editingChanged)
         tf.autocorrectionType = .no
         return tf
     }()
     
     // Degree Text Box
-    let degreeTextField: UITextField = {
+    let contactTextField: UITextField = {
         let tf = UITextField()
-        tf.placeholder = "Degree"
+        tf.placeholder = "Contact Information"
         tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
         tf.borderStyle = .roundedRect
         tf.font = UIFont.systemFont(ofSize: 14)
-        tf.addTarget(self, action: #selector(formValidation), for: .editingChanged)
         tf.autocorrectionType = .no
         return tf
     }()
     
     // GPA Text Box
-    let gpaTextField: UITextField = {
+    let relationshipTextField: UITextField = {
         let tf = UITextField()
-        tf.placeholder = "GPA (Optional)"
+        tf.placeholder = "Relationship"
         tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
         tf.borderStyle = .roundedRect
         tf.font = UIFont.systemFont(ofSize: 14)
@@ -61,25 +59,23 @@ class SignUpEducationVC: UIViewController, UIImagePickerControllerDelegate {
     }()
     
     // School Text Box
-    let otherSchoolTextField: UITextField = {
+    let aReferenceTextField: UITextField = {
         let tf = UITextField()
-        tf.placeholder = "Alternative School Name (Optional)"
+        tf.placeholder = "Reference Name"
         tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
         tf.borderStyle = .roundedRect
         tf.font = UIFont.systemFont(ofSize: 14)
-        tf.addTarget(self, action: #selector(formValidation), for: .editingChanged)
         tf.autocorrectionType = .no
         return tf
     }()
     
     // Degree Text Box
-    let otherDegreeTextField: UITextField = {
+    let aContactTextField: UITextField = {
         let tf = UITextField()
-        tf.placeholder = "Alternative Degree (Optional)"
+        tf.placeholder = "Contact Information"
         tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
         tf.borderStyle = .roundedRect
         tf.font = UIFont.systemFont(ofSize: 14)
-        tf.addTarget(self, action: #selector(formValidation), for: .editingChanged)
         tf.autocorrectionType = .no
         return tf
     }()
@@ -93,9 +89,9 @@ class SignUpEducationVC: UIViewController, UIImagePickerControllerDelegate {
     }()
     
     // GPA Text Box
-    let otherGpaTextField: UITextField = {
+    let aRelationshipTextField: UITextField = {
         let tf = UITextField()
-        tf.placeholder = "Alternative GPA (Optional)"
+        tf.placeholder = "Relationship"
         tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
         tf.borderStyle = .roundedRect
         tf.font = UIFont.systemFont(ofSize: 14)
@@ -105,12 +101,12 @@ class SignUpEducationVC: UIViewController, UIImagePickerControllerDelegate {
     
     let continueButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Continue   (2/4)", for: .normal)
+        button.setTitle("Complete", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = UIColor.lightGray // (red: 149/255, green: 204/255, blue: 244/255, alpha: 1)
+        button.backgroundColor = UIColor.appCyan // (red: 149/255, green: 204/255, blue: 244/255, alpha: 1)
         button.layer.cornerRadius = 8
         button.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
-        button.isEnabled = false
+        button.isEnabled = true
         return button
     }()
     
@@ -136,7 +132,7 @@ class SignUpEducationVC: UIViewController, UIImagePickerControllerDelegate {
     
     let secondaryField: UILabel = {
         let l = UILabel()
-        l.text = "Secondary"
+        l.text = "Alternative"
         l.font = UIFont.boldSystemFont(ofSize: 14)
         l.textColor = UIColor.darkGray
         l.textAlignment = .left
@@ -178,61 +174,42 @@ class SignUpEducationVC: UIViewController, UIImagePickerControllerDelegate {
         
         guard let uid = Auth.auth().currentUser?.uid else { return }
         // Properties
-        guard let primarySchool = schoolTextField.text else { return }
-        guard let primaryDegree = degreeTextField.text else { return }
-        guard let primaryGPA = gpaTextField.text else { return }
-        guard let secondaryDegree = otherDegreeTextField.text else { return }
-        guard let secondarySchool = otherSchoolTextField.text else { return }
-        guard let secondaryGPA = otherGpaTextField.text else { return }
+        guard let primaryReference = referenceTextField.text else { return }
+        guard let primaryContact = contactTextField.text else { return }
+        guard let primaryRelationship = relationshipTextField.text else { return }
+        guard let secondaryReference = aReferenceTextField.text else { return }
+        guard let secondaryContact = aContactTextField.text else { return }
+        guard let secondaryRelationship = aRelationshipTextField.text else { return }
     
         // guard let uid = authResult?.user.uid else { return }
         
-        let dictionaryValues = ["primarySchool": primarySchool,
-                                "primaryDegree": primaryDegree,
-                                "primaryGPA": primaryGPA,
-                                "secondarySchool": secondarySchool,
-                                "secondaryDegree": secondaryDegree,
-                                "secondaryGPA": secondaryGPA,]
+        let dictionaryValues = ["Reference": primaryReference,
+                                "Contact": primaryContact,
+                                "Relationship": primaryRelationship,
+                                "Alt Reference": secondaryReference,
+                                "Alt Contact": secondaryContact,
+                                "Alt Relationship": secondaryRelationship,]
     
-        let values = ["education": dictionaryValues]
+        let values = ["reference": dictionaryValues]
         
         // Save user info to database
         Database.database().reference().child("user").child(uid).updateChildValues(values) { (error, ref) in
         print("Success!!!!!!")
-        
-        /* Database.database().reference().child("user").updateChildValues(values) { (error, ref) in
-            print("Success!!!!!!") */
             
         }
-        
-        let loginViewController = SignUpExperienceVC()
+        let loginViewController = LoginVC()
         self.navigationController?.pushViewController(loginViewController, animated: true)
-    }
-
-    
-    @objc func formValidation() {
-        guard
-            schoolTextField.hasText,
-            degreeTextField.hasText
-            else {
-                continueButton.isEnabled = false
-                continueButton.backgroundColor = UIColor.lightGray
-                return
-        }
-        
-        continueButton.isEnabled = true
-        continueButton.backgroundColor = UIColor.appCyan
     }
     
     
     func configureViewComponents() {
         
-        let primaryView = UIStackView(arrangedSubviews: [primaryField, schoolTextField, degreeTextField, gpaTextField])
+        let primaryView = UIStackView(arrangedSubviews: [primaryField, referenceTextField, contactTextField, relationshipTextField])
         primaryView.axis = .vertical
         primaryView.spacing = 10
         primaryView.distribution = .fillProportionally
         
-        let secondaryView = UIStackView(arrangedSubviews: [secondaryField, otherSchoolTextField, otherDegreeTextField, otherGpaTextField])
+        let secondaryView = UIStackView(arrangedSubviews: [secondaryField, aReferenceTextField, aContactTextField, aRelationshipTextField])
         secondaryView.axis = .vertical
         secondaryView.spacing = 10
         secondaryView.distribution = .fillProportionally
@@ -247,6 +224,3 @@ class SignUpEducationVC: UIViewController, UIImagePickerControllerDelegate {
     }
     
 }
-
-
-

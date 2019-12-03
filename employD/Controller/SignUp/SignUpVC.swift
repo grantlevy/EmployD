@@ -37,6 +37,32 @@ class SignUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         return l
     }()
     
+    let accountField: UILabel = {
+        let l = UILabel()
+        l.text = "Account"
+        l.font = UIFont.boldSystemFont(ofSize: 14)
+        l.textColor = UIColor.darkGray
+        l.textAlignment = .left
+        return l
+    }()
+    
+    let contactField: UILabel = {
+        let l = UILabel()
+        l.text = "Contact"
+        l.font = UIFont.boldSystemFont(ofSize: 14)
+        l.textColor = UIColor.darkGray
+        l.textAlignment = .left
+        l.numberOfLines = 2
+        return l
+    }()
+    
+    let dummyField: UILabel = {
+        let l = UILabel()
+        l.text = ""
+        l.font = UIFont.boldSystemFont(ofSize: 18)
+        return l
+    }()
+    
 //    let progressBar: UIImageView = {
 //        let im = UIImageView(image: #imageLiteral(resourceName: "step1"))
 //        im.contentMode = .scaleAspectFill
@@ -95,7 +121,7 @@ class SignUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     
     let continueButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Continue", for: .normal)
+        button.setTitle("Continue   (1/4)", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = UIColor.lightGray // (red: 149/255, green: 204/255, blue: 244/255, alpha: 1)
         button.layer.cornerRadius = 8
@@ -116,18 +142,24 @@ class SignUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     }()
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Background color
         view.backgroundColor = .white
         
+        let logo = UIImageView(image: #imageLiteral(resourceName: "logo_dark"))
+        logo.contentMode = .scaleAspectFit
+        view.addSubview(logo)
+        logo.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 10, paddingLeft: 30, paddingBottom: 0, paddingRight: 30, width: 0, height: 40)
+        
         view.addSubview(addPhotoButton)
-        addPhotoButton.anchor(top: view.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 40, paddingLeft: 40, paddingBottom: 0, paddingRight: 0, width: 140, height: 140)
+        addPhotoButton.anchor(top: logo.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 40, paddingLeft: 40, paddingBottom: 0, paddingRight: 0, width: 140, height: 140)
         addPhotoButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     
         view.addSubview(addPhotoText)
-        addPhotoText.anchor(top: addPhotoButton.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: -10, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 30)
+        addPhotoText.anchor(top: addPhotoButton.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: -8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 30)
         addPhotoText.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
 //        view.addSubview(progressBar)
@@ -259,13 +291,24 @@ class SignUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     }
     
     func configureViewComponents() {
-        let stackView = UIStackView(arrangedSubviews: [nameTextField, emailTextField, passwordTextField, phoneTextField, continueButton])
+        let accountView = UIStackView(arrangedSubviews: [accountField, nameTextField, passwordTextField])
+        accountView.axis = .vertical
+        accountView.spacing = 10
+        accountView.distribution = .fillProportionally
+        
+        let contactView = UIStackView(arrangedSubviews: [contactField, emailTextField, phoneTextField])
+        contactView.axis = .vertical
+        contactView.spacing = 10
+        contactView.distribution = .fillProportionally
+        
+        let stackView = UIStackView(arrangedSubviews: [accountView, contactView, continueButton])
         stackView.axis = .vertical
-        stackView.spacing = 10
+        stackView.spacing = 25
         stackView.distribution = .fillProportionally
         
+        
         view.addSubview(stackView)
-        stackView.anchor(top: addPhotoButton.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 230, paddingLeft: 40, paddingBottom: 0, paddingRight: 40, width: 0, height: 240)
+        stackView.anchor(top: addPhotoButton.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 230, paddingLeft: 40, paddingBottom: 0, paddingRight: 40, width: 0, height: 300)
     }
     
 }

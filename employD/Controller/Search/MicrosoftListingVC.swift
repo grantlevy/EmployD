@@ -8,14 +8,14 @@
 
 import UIKit
 
-struct cellData {
+/* struct cellData {
 
     var opened = Bool()
     var title = String()
     var sectionData = [String]()
-}
+} */
 
-class SpotifyListingVC: UITableViewController {
+class MicrosoftListingVC: UITableViewController {
 
     var tableViewData = [cellData]()
     
@@ -74,7 +74,7 @@ class SpotifyListingVC: UITableViewController {
         self.navigationItem.titleView = UIImageView(image: #imageLiteral(resourceName: "EmployD_logo"))
         self.navigationItem.title = ""
         
-        let headerImage = UIImageView(image: #imageLiteral(resourceName: "spotify_v1"))
+        let headerImage = UIImageView(image: #imageLiteral(resourceName: "microsoft_listing"))
         headerImage.contentMode = UIViewContentMode.scaleAspectFit
         headerImage.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 200)
 
@@ -84,40 +84,44 @@ class SpotifyListingVC: UITableViewController {
         footerImage.axis = .horizontal
         footerImage.alignment = .center
         footerImage.distribution = .fillEqually
+        
+        
 
         tableView.tableHeaderView = headerImage
+
         tableView.tableFooterView = footerView
         
         tableViewData = [cellData(opened: true, title: "JOB OVERVIEW" , sectionData: ["""
-                We are looking for Machine Learning Engineers to #JoinTheBand and help drive a data-driven culture across Spotify. You will work on a variety of problems such as content recommendation, personalization, optimization, user intelligence, and content classification. Collaborative efforts with your team will result in new and interesting hypotheses, tests and scaling to large data sets with hundreds of billions of data points. Above all, your work will impact the way the world experiences music.
+                A new technology paradigm is emerging, one with an intelligent cloud and an intelligent edge. To foster Microsoft’s leadership in this field, Microsoft has launched a ground-breaking program to develop the next generation of leaders in AI. Located at the Microsoft New England Research and Development Center (NERD), the Microsoft AI Development Acceleration Program (MAIDAP) is hiring soon-to-be and recent graduates from BS, MS, and PhD programs in Machine Learning or Data Science related fields. Over the course of two years, participants will work in interdisciplinary project teams to provide AI as a service to engineering teams across the globe.
                 """]),
                          cellData(opened: false, title: "REQUIREMENTS", sectionData: ["""
                         Who You Are:
 
-                         Currently enrolled in a Ph.D. or Master’s graduate program in Machine Learning, or related field preferred
-                         You have experience implementing machine learning systems at scale in Java, Scala, Python or similar (not just R or Matlab)
-                         You have a strong mathematical background in statistics and machine learning
-                         You care about agile software processes, data-driven development, reliability, and responsible experimentation
+                         Currently pursuing a degree or graduated within the last 12 months with a degree in the following fields: Electrical Engineering, Computer Science, Data Science, Statistics, or other related fields.
+                         Prefer MS (or BS with 2+ years’ experience)
+                         Energized by creating AI solutions that can positively impact the work and lives of millions of people.
+                         Strong passion for data-driven learning.
+                         Excited by the prospect of working on a wide variety of datasets and AI applications, across many products and engineering teams.
+                         Believe that data science is a team sport.
                         """]),
                          cellData(opened: false, title: "SALARY & BENEFITS", sectionData: ["""
-                        Salary:                $108K - $150K
+                        Salary:                $78k - $147k
 
-                         Vacation Days:        4 weeks
+                        Vacation Days:        3 weeks
 
-                         401k Match:        50% up to 6%
+                        401k Match:        50% up to 6%
 
-                         Other:
-                         Health insurance, flexible work hours, catered lunch, 6 months maternity/paternity leave, unlimited sick days.
+                        Other:
+                        Health insurance, flexible work hours, catered lunch, 6 months maternity/paternity leave, unlimited sick days.
                         """]),
                          cellData(opened: false, title: "COMPANY REVIEWS", sectionData: ["""
-                            Amazing Culture and Trust
+                            Thoughts After 10 Years…
                             Pros
-                            - Very smart and friendly coworkers
-                            - Safe work environment (in engineering at least)
-                            - A lot of trust is given to the employees to do their jobs correctly and to do what's right for the company
-                            - The most inclusive workplace I've ever seen
+                            1. If you love tech, this is a great place. No doubt you'll talk tech (mostly the MSFT stack) from enterprise to consumer - from PCs to phones to Xboxes - from datacenter to desktop.
+                            2. What were GREAT benefits are now VERY GOOD (took a small step down) but still probably better than you'll find at 99% of large corporations. If you've got family - the value of the benefits is even higher. 401k match is great.
+                            
                             Cons
-                            - Some growing organisational pains. The "Spotify model" is good but is reaching it's capacity.
+                            Company is so large, it can be difficult to find ownership of projects.
                             """] )]
         
         setupTableView()
@@ -207,15 +211,15 @@ class SpotifyListingVC: UITableViewController {
     }
     
     @objc func handleLikeButton() {
-        confirmAlert(title: "Confirm application?", message: "Spotify - Machine Learning Engineer", nextViewController: MicrosoftListingVC())
+        confirmAlert(title: "Confirm application?", message: "Microsoft - MAIDAP Data Scientist", nextViewController: SpotifyListingVC())
     }
     
     @objc func handleSaveButton() {
-        confirmAlert(title: "Save for later?", message: "Spotify - Machine Learning Engineer", nextViewController: MicrosoftListingVC())
+        confirmAlert(title: "Save for later?", message: "Microsoft - MAIDAP Data Scientist", nextViewController: SpotifyListingVC())
     }
     
     @objc func handleRejectButton() {
-        confirmAlert(title: "Confirm rejection?", message: "Spotify - Machine Learning Engineer", nextViewController: MicrosoftListingVC())
+        confirmAlert(title: "Confirm rejection?", message: "Microsoft - MAIDAP Data Scientist", nextViewController: SpotifyListingVC())
     }
     
     func confirmAlert (title:String, message:String, nextViewController: UITableViewController) {

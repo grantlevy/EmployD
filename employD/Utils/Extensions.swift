@@ -6,6 +6,7 @@
 //  Copyright © 2019 Grant Levy. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
 extension UIView {
@@ -91,6 +92,4 @@ extension UIImageView {
     }
     
 }
-
-
 

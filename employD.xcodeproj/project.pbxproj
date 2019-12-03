@@ -22,6 +22,10 @@
 		348C78922395D1B80082CB6B /* UserReferenceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348C78912395D1B80082CB6B /* UserReferenceVC.swift */; };
 		348C78942395E04A0082CB6B /* JobPostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348C78932395E04A0082CB6B /* JobPostVC.swift */; };
 		348C7896239630800082CB6B /* SignUpEducationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348C7895239630800082CB6B /* SignUpEducationVC.swift */; };
+		348C78982396DA700082CB6B /* SignUpExperienceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348C78972396DA700082CB6B /* SignUpExperienceVC.swift */; };
+		348C789A2396DA830082CB6B /* SignUpReferenceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348C78992396DA830082CB6B /* SignUpReferenceVC.swift */; };
+		348C789C2396E2290082CB6B /* MicrosoftListingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348C789B2396E2290082CB6B /* MicrosoftListingVC.swift */; };
+		348C78A32396FF700082CB6B /* AdvancedSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348C78A22396FF700082CB6B /* AdvancedSearchVC.swift */; };
 		34D67A1C2392F118001C4A1B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34D67A1B2392F118001C4A1B /* GoogleService-Info.plist */; };
 		34DCD06723918F9500745CAB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34DCD06623918F9500745CAB /* AppDelegate.swift */; };
 		34DCD06923918F9500745CAB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34DCD06823918F9500745CAB /* SceneDelegate.swift */; };
@@ -49,6 +53,10 @@
 		348C78912395D1B80082CB6B /* UserReferenceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserReferenceVC.swift; sourceTree = "<group>"; };
 		348C78932395E04A0082CB6B /* JobPostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobPostVC.swift; sourceTree = "<group>"; };
 		348C7895239630800082CB6B /* SignUpEducationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpEducationVC.swift; sourceTree = "<group>"; };
+		348C78972396DA700082CB6B /* SignUpExperienceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpExperienceVC.swift; sourceTree = "<group>"; };
+		348C78992396DA830082CB6B /* SignUpReferenceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpReferenceVC.swift; sourceTree = "<group>"; };
+		348C789B2396E2290082CB6B /* MicrosoftListingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicrosoftListingVC.swift; sourceTree = "<group>"; };
+		348C78A22396FF700082CB6B /* AdvancedSearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedSearchVC.swift; sourceTree = "<group>"; };
 		34D67A1B2392F118001C4A1B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		34DCD06323918F9500745CAB /* employD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = employD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34DCD06623918F9500745CAB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -105,8 +113,8 @@
 			children = (
 				348C7881239555190082CB6B /* SearchVC.swift */,
 				348C788923957CC60082CB6B /* SpotifyListingVC.swift */,
-				348C788B239594FF0082CB6B /* JobListingVC.swift */,
-				348C78932395E04A0082CB6B /* JobPostVC.swift */,
+				348C789B2396E2290082CB6B /* MicrosoftListingVC.swift */,
+				348C78A22396FF700082CB6B /* AdvancedSearchVC.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -116,6 +124,8 @@
 			children = (
 				3410BA24239323A100720759 /* SignUpVC.swift */,
 				348C7895239630800082CB6B /* SignUpEducationVC.swift */,
+				348C78972396DA700082CB6B /* SignUpExperienceVC.swift */,
+				348C78992396DA830082CB6B /* SignUpReferenceVC.swift */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -144,6 +154,15 @@
 			path = Chat;
 			sourceTree = "<group>";
 		};
+		348C789D2396FF000082CB6B /* Archive */ = {
+			isa = PBXGroup;
+			children = (
+				348C788B239594FF0082CB6B /* JobListingVC.swift */,
+				348C78932395E04A0082CB6B /* JobPostVC.swift */,
+			);
+			path = Archive;
+			sourceTree = "<group>";
+		};
 		34DCD05A23918F9500745CAB = {
 			isa = PBXGroup;
 			children = (
@@ -165,6 +184,7 @@
 		34DCD06523918F9500745CAB /* employD */ = {
 			isa = PBXGroup;
 			children = (
+				348C789D2396FF000082CB6B /* Archive */,
 				348C787D239553CB0082CB6B /* Utils */,
 				34DCD07C23918FBD00745CAB /* Model */,
 				34DCD07D23918FC100745CAB /* View */,
@@ -343,6 +363,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				348C789A2396DA830082CB6B /* SignUpReferenceVC.swift in Sources */,
+				348C78982396DA700082CB6B /* SignUpExperienceVC.swift in Sources */,
 				348C78902395B07A0082CB6B /* UserExperienceVC.swift in Sources */,
 				348C7882239555190082CB6B /* SearchVC.swift in Sources */,
 				3410BA3323937FE000720759 /* UserProfileHeader.swift in Sources */,
@@ -353,6 +375,7 @@
 				3410BA2B23932D8A00720759 /* HomeVC.swift in Sources */,
 				348C78922395D1B80082CB6B /* UserReferenceVC.swift in Sources */,
 				3410BA2923932B7400720759 /* MainTabVC.swift in Sources */,
+				348C789C2396E2290082CB6B /* MicrosoftListingVC.swift in Sources */,
 				348C788C239594FF0082CB6B /* JobListingVC.swift in Sources */,
 				348C787F239553D70082CB6B /* Extensions.swift in Sources */,
 				34DCD06923918F9500745CAB /* SceneDelegate.swift in Sources */,
@@ -360,6 +383,7 @@
 				34DCD08023918FF300745CAB /* LoginVC.swift in Sources */,
 				348C7896239630800082CB6B /* SignUpEducationVC.swift in Sources */,
 				3410BA25239323A100720759 /* SignUpVC.swift in Sources */,
+				348C78A32396FF700082CB6B /* AdvancedSearchVC.swift in Sources */,
 				348C788A23957CC60082CB6B /* SpotifyListingVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
