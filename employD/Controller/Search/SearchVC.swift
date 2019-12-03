@@ -30,6 +30,7 @@ class SearchVC: UIViewController {
             tf.layer.shadowOffset = CGSize(width: 0, height: 1.0)
             tf.layer.shadowOpacity = 0.4
             tf.layer.shadowRadius = 2.0
+            tf.autocorrectionType = .no
             return tf
         }()
         
@@ -43,6 +44,7 @@ class SearchVC: UIViewController {
             tf.layer.shadowOffset = CGSize(width: 0, height: 1.0)
             tf.layer.shadowOpacity = 0.4
             tf.layer.shadowRadius = 2.0
+            tf.autocorrectionType = .no
             return tf
         }()
         
@@ -112,7 +114,7 @@ class SearchVC: UIViewController {
     }
     
     @objc func handleSearchButton() {
-        let jobListingViewController = JobListingVC()
+        let jobListingViewController = SpotifyListingVC()
         self.navigationController?.pushViewController(jobListingViewController, animated: true)
     }
     

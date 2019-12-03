@@ -16,11 +16,12 @@
 		3410BA3723938C1800720759 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3410BA3623938C1800720759 /* User.swift */; };
 		348C787F239553D70082CB6B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348C787E239553D70082CB6B /* Extensions.swift */; };
 		348C7882239555190082CB6B /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348C7881239555190082CB6B /* SearchVC.swift */; };
-		348C788A23957CC60082CB6B /* ExpandableJobListingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348C788923957CC60082CB6B /* ExpandableJobListingVC.swift */; };
+		348C788A23957CC60082CB6B /* SpotifyListingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348C788923957CC60082CB6B /* SpotifyListingVC.swift */; };
 		348C788C239594FF0082CB6B /* JobListingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348C788B239594FF0082CB6B /* JobListingVC.swift */; };
 		348C78902395B07A0082CB6B /* UserExperienceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348C788F2395B07A0082CB6B /* UserExperienceVC.swift */; };
 		348C78922395D1B80082CB6B /* UserReferenceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348C78912395D1B80082CB6B /* UserReferenceVC.swift */; };
 		348C78942395E04A0082CB6B /* JobPostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348C78932395E04A0082CB6B /* JobPostVC.swift */; };
+		348C7896239630800082CB6B /* SignUpEducationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348C7895239630800082CB6B /* SignUpEducationVC.swift */; };
 		34D67A1C2392F118001C4A1B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34D67A1B2392F118001C4A1B /* GoogleService-Info.plist */; };
 		34DCD06723918F9500745CAB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34DCD06623918F9500745CAB /* AppDelegate.swift */; };
 		34DCD06923918F9500745CAB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34DCD06823918F9500745CAB /* SceneDelegate.swift */; };
@@ -42,11 +43,12 @@
 		3410BA3623938C1800720759 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		348C787E239553D70082CB6B /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		348C7881239555190082CB6B /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
-		348C788923957CC60082CB6B /* ExpandableJobListingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableJobListingVC.swift; sourceTree = "<group>"; };
+		348C788923957CC60082CB6B /* SpotifyListingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyListingVC.swift; sourceTree = "<group>"; };
 		348C788B239594FF0082CB6B /* JobListingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobListingVC.swift; sourceTree = "<group>"; };
 		348C788F2395B07A0082CB6B /* UserExperienceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserExperienceVC.swift; sourceTree = "<group>"; };
 		348C78912395D1B80082CB6B /* UserReferenceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserReferenceVC.swift; sourceTree = "<group>"; };
 		348C78932395E04A0082CB6B /* JobPostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobPostVC.swift; sourceTree = "<group>"; };
+		348C7895239630800082CB6B /* SignUpEducationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpEducationVC.swift; sourceTree = "<group>"; };
 		34D67A1B2392F118001C4A1B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		34DCD06323918F9500745CAB /* employD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = employD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34DCD06623918F9500745CAB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -102,7 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				348C7881239555190082CB6B /* SearchVC.swift */,
-				348C788923957CC60082CB6B /* ExpandableJobListingVC.swift */,
+				348C788923957CC60082CB6B /* SpotifyListingVC.swift */,
 				348C788B239594FF0082CB6B /* JobListingVC.swift */,
 				348C78932395E04A0082CB6B /* JobPostVC.swift */,
 			);
@@ -113,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				3410BA24239323A100720759 /* SignUpVC.swift */,
+				348C7895239630800082CB6B /* SignUpEducationVC.swift */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -355,8 +358,9 @@
 				34DCD06923918F9500745CAB /* SceneDelegate.swift in Sources */,
 				3410BA3723938C1800720759 /* User.swift in Sources */,
 				34DCD08023918FF300745CAB /* LoginVC.swift in Sources */,
+				348C7896239630800082CB6B /* SignUpEducationVC.swift in Sources */,
 				3410BA25239323A100720759 /* SignUpVC.swift in Sources */,
-				348C788A23957CC60082CB6B /* ExpandableJobListingVC.swift in Sources */,
+				348C788A23957CC60082CB6B /* SpotifyListingVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

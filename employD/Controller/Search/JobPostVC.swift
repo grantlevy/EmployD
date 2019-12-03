@@ -8,14 +8,14 @@
 
 import UIKit
 
-struct cellData {
-
-    var opened = Bool()
-    // var title = NSMutableAttributedString()
-    // var sectionData = [NSMutableAttributedString]()
-    var title = String()
-    var sectionData = [String]()
-}
+//struct cellData {
+//
+//    var opened = Bool()
+//    // var title = NSMutableAttributedString()
+//    // var sectionData = [NSMutableAttributedString]()
+//    var title = String()
+//    var sectionData = [String]()
+//}
 
 class JobPostVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 

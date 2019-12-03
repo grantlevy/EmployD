@@ -13,7 +13,6 @@ class SignUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     
     var imageSelected = false
     
-    
     // Add Photo Button
     let addPhotoButton: UIButton = {
         let button = UIButton(type: .system)
@@ -21,6 +20,28 @@ class SignUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         button.addTarget(self, action: #selector(handleSelectPhoto), for: .touchUpInside)
         return button
     }()
+    
+    let addPhotoText: UILabel = {
+        let l = UILabel()
+        l.text = "Tap to Add Photo"
+        l.font = UIFont.systemFont(ofSize: 10)
+        l.textAlignment = .center
+        return l
+    }()
+    
+    let pageText: UILabel = {
+        let l = UILabel()
+        l.text = "General Information"
+        l.font = UIFont.boldSystemFont(ofSize: 22)
+        l.textAlignment = .center
+        return l
+    }()
+    
+//    let progressBar: UIImageView = {
+//        let im = UIImageView(image: #imageLiteral(resourceName: "step1"))
+//        im.contentMode = .scaleAspectFill
+//        return im
+//    }()
     
     // Name Text Box
     let nameTextField: UITextField = {
@@ -30,6 +51,7 @@ class SignUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         tf.borderStyle = .roundedRect
         tf.font = UIFont.systemFont(ofSize: 14)
         tf.addTarget(self, action: #selector(formValidation), for: .editingChanged)
+        tf.autocorrectionType = .no
         return tf
     }()
     
@@ -42,6 +64,7 @@ class SignUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         tf.font = UIFont.systemFont(ofSize: 14)
         tf.autocapitalizationType = .none
         tf.addTarget(self, action: #selector(formValidation), for: .editingChanged)
+        tf.autocorrectionType = .no
         return tf
     }()
     
@@ -54,6 +77,7 @@ class SignUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         tf.borderStyle = .roundedRect
         tf.font = UIFont.systemFont(ofSize: 14)
         tf.addTarget(self, action: #selector(formValidation), for: .editingChanged)
+        tf.autocorrectionType = .no
         return tf
     }()
     
@@ -65,6 +89,7 @@ class SignUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         tf.borderStyle = .roundedRect
         tf.font = UIFont.systemFont(ofSize: 14)
         tf.addTarget(self, action: #selector(formValidation), for: .editingChanged)
+        tf.autocorrectionType = .no
         return tf
     }()
     
@@ -101,6 +126,17 @@ class SignUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         addPhotoButton.anchor(top: view.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 40, paddingLeft: 40, paddingBottom: 0, paddingRight: 0, width: 140, height: 140)
         addPhotoButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     
+        view.addSubview(addPhotoText)
+        addPhotoText.anchor(top: addPhotoButton.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: -10, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 30)
+        addPhotoText.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
+//        view.addSubview(progressBar)
+//        progressBar.anchor(top: addPhotoText.bottomAnchor, left: nil, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 80)
+        
+        view.addSubview(pageText)
+        pageText.anchor(top: addPhotoText.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 10, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
+        pageText.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
         configureViewComponents()
         view.addSubview(returnButton)
         returnButton.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 20, paddingRight: 0, width: 0, height: 50)
@@ -169,7 +205,12 @@ class SignUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
             // Success
             print("Successfully created user with Firebase")
             
+            
+            
         }
+        
+        let jobListingViewController = SignUpEducationVC()
+        self.navigationController?.pushViewController(jobListingViewController, animated: true)
     }
     
     @objc func formValidation() {
@@ -224,7 +265,7 @@ class SignUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         stackView.distribution = .fillProportionally
         
         view.addSubview(stackView)
-        stackView.anchor(top: addPhotoButton.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 175, paddingLeft: 40, paddingBottom: 0, paddingRight: 40, width: 0, height: 240)
+        stackView.anchor(top: addPhotoButton.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 230, paddingLeft: 40, paddingBottom: 0, paddingRight: 40, width: 0, height: 240)
     }
     
 }

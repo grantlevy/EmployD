@@ -8,18 +8,65 @@
 
 import UIKit
 
-/* struct cellData {
+struct cellData {
 
     var opened = Bool()
-    // var title = NSMutableAttributedString()
-    // var sectionData = [NSMutableAttributedString]()
     var title = String()
     var sectionData = [String]()
-} */
+}
 
-class ExpandableJobListingVC: UITableViewController {
+class SpotifyListingVC: UITableViewController {
 
     var tableViewData = [cellData]()
+    
+    let generalButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("GENERAL", for: .normal)
+        button.layer.cornerRadius = 10
+        button.layer.borderColor = UIColor.lightGray.cgColor
+        button.layer.backgroundColor = UIColor.darkGray.cgColor
+        button.layer.borderWidth = 0.5
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
+        button.setTitleColor(.white, for: .normal)
+        return button
+    }()
+    
+    let likeButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setImage(#imageLiteral(resourceName: "like_button"), for: .normal)
+        button.contentMode = .scaleAspectFit
+        button.addTarget(self, action: #selector(handleLikeButton), for: .touchUpInside)
+        return button
+    }()
+    
+    let rejectButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setImage(#imageLiteral(resourceName: "reject_button"), for: .normal)
+        button.contentMode = .scaleAspectFit
+        button.addTarget(self, action: #selector(handleLikeButton), for: .touchUpInside)
+        return button
+    }()
+    
+    let saveButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setImage(#imageLiteral(resourceName: "save_button"), for: .normal)
+        button.contentMode = .scaleAspectFit
+        button.addTarget(self, action: #selector(handleLikeButton), for: .touchUpInside)
+        return button
+    }()
+    
+    let footerView: UIView = {
+        let fv = UIView()
+        return fv
+    }()
+    
+//    let rejectButton = UIButton(type: .custom)
+//    likeButton.setImage(#imageLiteral(resourceName: "reject_button"), for: .normal)
+//    likeButton.addTarget(self, action: #selector(handleLikeButton), for: .touchUpInside)
+//
+//    let saveButton = UIButton(type: .custom)
+//    likeButton.setImage(#imageLiteral(resourceName: "save_button"), for: .normal)
+//    likeButton.addTarget(self, action: #selector(handleLikeButton), for: .touchUpInside)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,17 +76,21 @@ class ExpandableJobListingVC: UITableViewController {
         let headerImage = UIImageView(image: #imageLiteral(resourceName: "spotify_v1"))
         headerImage.contentMode = UIViewContentMode.scaleAspectFit
         headerImage.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 200)
+
+
         
-        // headerImage.adjustsImageSizeForAccessibilityContentSizeCategory
+        let footerImage = UIStackView(arrangedSubviews: [rejectButton, saveButton, likeButton])
+        footerImage.axis = .horizontal
+        footerImage.alignment = .center
+        footerImage.distribution = .fillEqually
         
-        /* headerView = UIView()
-        headerView.backgroundColor = UIColor.white
-        // headerView.
-        headerView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 80) */
         
+
         tableView.tableHeaderView = headerImage
+
+        tableView.tableFooterView = footerView
         
-        tableViewData = [cellData(opened: false, title: "JOB OVERVIEW", sectionData: ["""
+        tableViewData = [cellData(opened: true, title: "JOB OVERVIEW" , sectionData: ["""
                 We are looking for Machine Learning Engineers to #JoinTheBand and help drive a data-driven culture across Spotify. You will work on a variety of problems such as content recommendation, personalization, optimization, user intelligence, and content classification. Collaborative efforts with your team will result in new and interesting hypotheses, tests and scaling to large data sets with hundreds of billions of data points. Above all, your work will impact the way the world experiences music.
                 """]),
                          cellData(opened: false, title: "REQUIREMENTS", sectionData: ["""
@@ -70,11 +121,30 @@ class ExpandableJobListingVC: UITableViewController {
                             Cons
                             - Some growing organisational pains. The "Spotify model" is good but is reaching it's capacity.
                             """] )]
+        
         setupTableView()
+//        tableView.addSubview(footerImage)
+        // likeButton.anchor(top: footerView.topAnchor, left: view.leftAnchor, bottom: footerView.bottomAnchor, right: view.rightAnchor, paddingTop: 20, paddingLeft: 15, paddingBottom: 0, paddingRight: 15, width: 0, height: 100)
+        configureViewComponents()
 
         
     }
 
+    func configureViewComponents() {
+         let stackView = UIStackView(arrangedSubviews: [rejectButton, saveButton, likeButton])
+         
+         stackView.axis = .horizontal
+         stackView.distribution = .equalSpacing
+         stackView.spacing = 15
+         
+        view.addSubview(stackView)
+        stackView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
+        stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        stackView.anchor(top: nil, left: footerView.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 45, paddingBottom: 10, paddingRight: 45, width: 0, height: 80)
+        
+     }
+    
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -98,92 +168,48 @@ class ExpandableJobListingVC: UITableViewController {
             cell.textLabel?.text = tableViewData[indexPath.section].title
             cell.textLabel?.numberOfLines = 0
             cell.textLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-//            cell.backgroundColor = .lightGray
-//            cell.textLabel?.textColor = .darkGray
-//            cell.textLabel?.font = UIFont.systemFont(ofSize: 14)
-            // tableView.rowHeight = 20
+            cell.backgroundColor = .lightGray
+            cell.textLabel?.textColor = .darkGray
+            cell.textLabel?.font = UIFont.systemFont(ofSize: 14)
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell") else { return UITableViewCell() }
             cell.textLabel?.text = tableViewData[indexPath.section].sectionData[dataIndex]
             cell.textLabel?.numberOfLines = 0
             cell.textLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+            cell.backgroundColor = .white
+            cell.textLabel?.textColor = .black
+            cell.textLabel?.font = UIFont.systemFont(ofSize: 14)
             
             return cell
         }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-
-        
-        
-        
         if indexPath.row == 0 {
             if tableViewData[indexPath.section].opened == true {
                 tableViewData[indexPath.section].opened = false
                 let sections = IndexSet.init(integer: indexPath.section)
                 tableView.reloadSections(sections, with: .none)
-                tableView.isScrollEnabled = true
+                
                 
             } else {
                 tableViewData[indexPath.section].opened = true
                 let sections = IndexSet.init(integer: indexPath.section)
                 tableView.reloadSections(sections, with: .none)
-                tableView.isScrollEnabled = true
+                
             }
         }
     }
     
     func setupTableView() {
+        tableView.separatorColor = UIColor.darkGray
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         
     }
     
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    @objc func handleLikeButton() {
+        print("help!")
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
 }
