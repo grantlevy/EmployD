@@ -1,15 +1,14 @@
 //
-//  UserProfileHeader.swift
+//  UserProfileExperience.swift
 //  employD
 //
-//  Created by Grant Levy on 11/30/19.
+//  Created by Grant Levy on 12/2/19.
 //  Copyright © 2019 Grant Levy. All rights reserved.
 //
 
 import UIKit
 
-
-class UserProfileHeader: UICollectionViewCell {
+class UserProfileExperience: UICollectionViewCell {
     
     var user: User? {
         didSet {
@@ -48,7 +47,38 @@ class UserProfileHeader: UICollectionViewCell {
         return button
     }()
     
+    let generalButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("GENERAL", for: .normal)
+        button.layer.cornerRadius = 10
+        button.layer.borderColor = UIColor.lightGray.cgColor
+        button.layer.borderWidth = 0.5
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
+        button.setTitleColor(.darkGray, for: .normal)
+        return button
+    }()
     
+    let experienceButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("EXPERIENCE", for: .normal)
+        button.layer.cornerRadius = 10
+        button.layer.borderColor = UIColor.lightGray.cgColor
+        button.layer.borderWidth = 0.5
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
+        button.setTitleColor(.darkGray, for: .normal)
+        return button
+    }()
+    
+    let referenceButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("REFERENCES", for: .normal)
+        button.layer.cornerRadius = 10
+        button.layer.borderColor = UIColor.lightGray.cgColor
+        button.layer.borderWidth = 0.5
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
+        button.setTitleColor(.darkGray, for: .normal)
+        return button
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -74,6 +104,18 @@ class UserProfileHeader: UICollectionViewCell {
         let bottomDividerView = UIView()
         bottomDividerView.backgroundColor = .lightGray
         
+        let stackView = UIStackView(arrangedSubviews: [generalButton, experienceButton, referenceButton])
+        
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        stackView.spacing = 15
+        
+        addSubview(stackView)
+        // addSubview(topDividerView)
+        // addSubview(bottomDividerView)
+        
+        stackView.anchor(top: nil, left: leftAnchor, bottom: self.bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 10, paddingBottom: 0, paddingRight: 10, width: 0, height: 30)
+        
         // topDividerView.anchor(top: stackView.topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0.5)
         
         // bottomDividerView.anchor(top: stackView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0.5)
@@ -83,6 +125,4 @@ class UserProfileHeader: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-
 }

@@ -8,14 +8,14 @@
 
 import UIKit
 
-struct cellData {
+/* struct cellData {
 
     var opened = Bool()
     // var title = NSMutableAttributedString()
     // var sectionData = [NSMutableAttributedString]()
     var title = String()
     var sectionData = [String]()
-}
+} */
 
 class ExpandableJobListingVC: UITableViewController {
 
@@ -24,16 +24,20 @@ class ExpandableJobListingVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        self.navigationItem.titleView = UIImageView(image: #imageLiteral(resourceName: "EmployD_logo"))
         
-           /* tableViewData = [cellData(opened: false, title: NSMutableAttributedString(string: "JOB OVERVIEW",
-                 attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16), NSAttributedStringKey.foregroundColor: UIColor.black]),
-                sectionData: [NSMutableAttributedString(string: "We are looking for Machine Learning Engineers to #JoinTheBand and help drive a data-driven culture across Spotify. You will work on a variety of problems such as content recommendation, personalization, optimization, user intelligence, and content classification. Collaborative efforts with your team will result in new and interesting hypotheses, tests and scaling to large data sets with hundreds of billions of data points. Above all, your work will impact the way the world experiences music.",
-                    attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16), NSAttributedStringKey.foregroundColor: UIColor.black])])] */
-
+        let headerImage = UIImageView(image: #imageLiteral(resourceName: "spotify_v1"))
+        headerImage.contentMode = UIViewContentMode.scaleAspectFit
+        headerImage.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 200)
+        
+        // headerImage.adjustsImageSizeForAccessibilityContentSizeCategory
+        
+        /* headerView = UIView()
+        headerView.backgroundColor = UIColor.white
+        // headerView.
+        headerView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 80) */
+        
+        tableView.tableHeaderView = headerImage
         
         tableViewData = [cellData(opened: false, title: "JOB OVERVIEW", sectionData: ["""
                 We are looking for Machine Learning Engineers to #JoinTheBand and help drive a data-driven culture across Spotify. You will work on a variety of problems such as content recommendation, personalization, optimization, user intelligence, and content classification. Collaborative efforts with your team will result in new and interesting hypotheses, tests and scaling to large data sets with hundreds of billions of data points. Above all, your work will impact the way the world experiences music.
@@ -110,6 +114,11 @@ class ExpandableJobListingVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+
+        
+        
+        
         if indexPath.row == 0 {
             if tableViewData[indexPath.section].opened == true {
                 tableViewData[indexPath.section].opened = false

@@ -112,7 +112,7 @@ class SearchVC: UIViewController {
     }
     
     @objc func handleSearchButton() {
-        let jobListingViewController = ExpandableJobListingVC()
+        let jobListingViewController = JobListingVC()
         self.navigationController?.pushViewController(jobListingViewController, animated: true)
     }
     

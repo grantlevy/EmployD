@@ -12,45 +12,20 @@ import Firebase
 private let reuseIdentifier = "Cell"
 private let headerIdentifier = "UserProfileHeader"
 
-class UserProfileVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-    
+class UserExperienceVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+
+    // MARK: - Properties
+    var user: User?
     
     let generalButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("GENERAL", for: .normal)
         button.layer.cornerRadius = 10
         button.layer.borderColor = UIColor.lightGray.cgColor
-        button.layer.backgroundColor = UIColor.darkGray.cgColor
         button.layer.borderWidth = 0.5
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
-        button.setTitleColor(.white, for: .normal)
+        button.setTitleColor(.darkGray, for: .normal)
         return button
-    }()
-    
-    let generalHeader: UILabel = {
-        let l = UILabel()
-        l.text = "  GENERAL"
-        l.font = UIFont.systemFont(ofSize: 16)
-        l.textColor = UIColor.darkGray
-        l.backgroundColor = UIColor.lightGray
-        l.textAlignment = .left
-        return l
-    }()
-    
-    let cityText:  UILabel = {
-        let l = UILabel()
-        l.text = "City"
-        l.font = UIFont.systemFont(ofSize: 16)
-        l.textColor = UIColor.darkGray
-        l.textAlignment = .center
-        return l
-        }()
-    
-    let cityValue: UILabel = {
-        let l = UILabel()
-        l.font = UIFont.systemFont(ofSize: 16)
-        l.textColor = UIColor.darkGray
-        return l
     }()
     
     let experienceButton: UIButton = {
@@ -58,24 +33,13 @@ class UserProfileVC: UICollectionViewController, UICollectionViewDelegateFlowLay
         button.setTitle("EXPERIENCE", for: .normal)
         button.layer.cornerRadius = 10
         button.layer.borderColor = UIColor.lightGray.cgColor
+            button.layer.backgroundColor = UIColor.darkGray.cgColor
         button.layer.borderWidth = 0.5
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
-        button.setTitleColor(.darkGray, for: .normal)
+        button.setTitleColor(.white, for: .normal)
         // button.addTarget(self, action: #selector(handleExperienceButton), for: .touchUpInside)
         return button
     }()
-    
-    let experienceText: UILabel = {
-            let l = UILabel()
-            l.text = """
-            This is experience content
-            Hello!
-            """
-            l.font = UIFont.systemFont(ofSize: 20)
-            l.textColor = UIColor.black
-            l.textAlignment = .left
-            return l
-        }()
     
     let referenceButton: UIButton = {
         let button = UIButton(type: .system)
@@ -85,7 +49,6 @@ class UserProfileVC: UICollectionViewController, UICollectionViewDelegateFlowLay
         button.layer.borderWidth = 0.5
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
         button.setTitleColor(.darkGray, for: .normal)
-        // button.addTarget(self, action: #selector(handleReferenceButton), for: .touchUpInside)
         return button
     }()
     
@@ -110,9 +73,6 @@ class UserProfileVC: UICollectionViewController, UICollectionViewDelegateFlowLay
         
         configureLogoutButton()
         configureViewComponents()
-        configureGeneralView()
-        
-
     }
 
     func configureViewComponents() {
@@ -129,27 +89,8 @@ class UserProfileVC: UICollectionViewController, UICollectionViewDelegateFlowLay
         stackView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 170, paddingLeft: 10, paddingBottom: 0, paddingRight: 10, width: 0, height: 30)
      }
     
-    func configureGeneralView() {
-        
-        let cityStack = UIStackView(arrangedSubviews: [cityText, cityValue])
-        cityStack.axis = .horizontal
-        cityStack.distribution = .fillEqually
-        
-        let stackView = UIStackView(arrangedSubviews: [generalHeader, cityStack])
-        
-        stackView.axis = .vertical
-        stackView.spacing = 5
-        
-        view.addSubview(stackView)
-        stackView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 225, paddingLeft: 10, paddingBottom: 0, paddingRight: 10, width: 0, height: 0)
-    }
+    
 
-    
-    
-    
-    
-    
-    
     
     // MARK: UICollectionViewDataSource
 
@@ -238,15 +179,10 @@ class UserProfileVC: UICollectionViewController, UICollectionViewDelegateFlowLay
         
     }
     
-//    @objc func handleExperienceButton() {
-//        generalText.isHidden = true
-//        experienceText.isHidden = false
-//    }
-//
-//    @objc func handleReferenceButton() {
-//        let newViewController = UserReferenceVC()
-//        navigationController?.pushViewController(newViewController, animated: true)
-//    }
+    /*@objc func handleExperienceButton() {
+        let jobListingViewController = UserProfileExperience()
+        self.navigationController?.pushViewController(jobListingViewController, animated: false)
+    }*/
 
 
 
