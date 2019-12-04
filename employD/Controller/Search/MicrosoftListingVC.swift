@@ -60,6 +60,14 @@ class MicrosoftListingVC: UITableViewController {
         return fv
     }()
     
+    let footerBorder: UIView = {
+            let v = UIView()
+            v.layer.borderColor = UIColor.black.cgColor
+            v.layer.borderWidth = 0.3
+            v.layer.backgroundColor = UIColor.white.cgColor
+            return v
+    }()
+    
 //    let rejectButton = UIButton(type: .custom)
 //    likeButton.setImage(#imageLiteral(resourceName: "reject_button"), for: .normal)
 //    likeButton.addTarget(self, action: #selector(handleLikeButton), for: .touchUpInside)
@@ -113,7 +121,7 @@ class MicrosoftListingVC: UITableViewController {
 
                         Other:
                         Health insurance, flexible work hours, catered lunch, 6 months maternity/paternity leave, unlimited sick days.
-                        """]),
+                        """, " "]),
                          cellData(opened: false, title: "COMPANY REVIEWS", sectionData: ["""
                             Thoughts After 10 Years…
                             Pros
@@ -122,7 +130,7 @@ class MicrosoftListingVC: UITableViewController {
                             
                             Cons
                             Company is so large, it can be difficult to find ownership of projects.
-                            """] )]
+                            """, " ", " "] )]
         
         setupTableView()
 //        tableView.addSubview(footerImage)
@@ -139,9 +147,12 @@ class MicrosoftListingVC: UITableViewController {
          stackView.distribution = .equalSpacing
          stackView.spacing = 15
          
+        view.addSubview(footerBorder)
         view.addSubview(stackView)
         stackView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
         stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        
+        footerBorder.anchor(top: stackView.topAnchor, left: view.leftAnchor, bottom: stackView.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 80)
         stackView.anchor(top: nil, left: footerView.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 45, paddingBottom: 10, paddingRight: 45, width: 0, height: 80)
         
      }

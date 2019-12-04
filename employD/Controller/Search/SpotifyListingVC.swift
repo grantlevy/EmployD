@@ -60,6 +60,14 @@ class SpotifyListingVC: UITableViewController {
         return fv
     }()
     
+    let footerBorder: UIView = {
+            let v = UIView()
+            v.layer.borderColor = UIColor.black.cgColor
+            v.layer.borderWidth = 0.3
+            v.layer.backgroundColor = UIColor.white.cgColor
+            return v
+    }()
+    
 //    let rejectButton = UIButton(type: .custom)
 //    likeButton.setImage(#imageLiteral(resourceName: "reject_button"), for: .normal)
 //    likeButton.addTarget(self, action: #selector(handleLikeButton), for: .touchUpInside)
@@ -108,7 +116,7 @@ class SpotifyListingVC: UITableViewController {
 
                          Other:
                          Health insurance, flexible work hours, catered lunch, 6 months maternity/paternity leave, unlimited sick days.
-                        """]),
+                        """, " "]),
                          cellData(opened: false, title: "COMPANY REVIEWS", sectionData: ["""
                             Amazing Culture and Trust
                             Pros
@@ -118,7 +126,7 @@ class SpotifyListingVC: UITableViewController {
                             - The most inclusive workplace I've ever seen
                             Cons
                             - Some growing organisational pains. The "Spotify model" is good but is reaching it's capacity.
-                            """] )]
+                            """, " ", " "] )]
         
         setupTableView()
 //        tableView.addSubview(footerImage)
@@ -129,15 +137,18 @@ class SpotifyListingVC: UITableViewController {
     }
 
     func configureViewComponents() {
-         let stackView = UIStackView(arrangedSubviews: [rejectButton, saveButton, likeButton])
+        
+        let stackView = UIStackView(arrangedSubviews: [rejectButton, saveButton, likeButton])
          
-         stackView.axis = .horizontal
-         stackView.distribution = .equalSpacing
-         stackView.spacing = 15
+        stackView.axis = .horizontal
+        stackView.distribution = .equalSpacing
+        stackView.spacing = 15
          
+        view.addSubview(footerBorder)
         view.addSubview(stackView)
         stackView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
         stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        footerBorder.anchor(top: stackView.topAnchor, left: view.leftAnchor, bottom: stackView.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 80)
         stackView.anchor(top: nil, left: footerView.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 45, paddingBottom: 10, paddingRight: 45, width: 0, height: 80)
         
      }
@@ -169,6 +180,7 @@ class SpotifyListingVC: UITableViewController {
             cell.backgroundColor = .lightGray
             cell.textLabel?.textColor = .darkGray
             cell.textLabel?.font = UIFont.systemFont(ofSize: 14)
+
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell") else { return UITableViewCell() }

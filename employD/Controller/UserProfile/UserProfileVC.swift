@@ -14,7 +14,6 @@ private let headerIdentifier = "UserProfileHeader"
 
 class UserProfileVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
-    
     let generalButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("GENERAL", for: .normal)
@@ -29,7 +28,7 @@ class UserProfileVC: UICollectionViewController, UICollectionViewDelegateFlowLay
     
     let generalHeader: UILabel = {
         let l = UILabel()
-        l.text = "  GENERAL"
+        l.text = "    CONTACT INFORMATION"
         l.font = UIFont.systemFont(ofSize: 16)
         l.textColor = UIColor.darkGray
         l.backgroundColor = UIColor.lightGray
@@ -37,19 +36,57 @@ class UserProfileVC: UICollectionViewController, UICollectionViewDelegateFlowLay
         return l
     }()
     
-    let cityText:  UILabel = {
+    let primaryEducationHeader: UILabel = {
         let l = UILabel()
-        l.text = "City"
+        l.text = "    PRIMARY EDUCATION"
         l.font = UIFont.systemFont(ofSize: 16)
         l.textColor = UIColor.darkGray
-        l.textAlignment = .center
+        l.backgroundColor = UIColor.lightGray
+        l.textAlignment = .left
+        return l
+    }()
+    
+    let secondaryEducationHeader: UILabel = {
+        let l = UILabel()
+        l.text = "    SECONDARY EDUCATION"
+        l.font = UIFont.systemFont(ofSize: 16)
+        l.textColor = UIColor.darkGray
+        l.backgroundColor = UIColor.lightGray
+        l.textAlignment = .left
+        return l
+    }()
+    
+    let emailText:  UILabel = {
+        let l = UILabel()
+        l.text = "   Email"
+        l.font = UIFont.systemFont(ofSize: 18)
+        l.textColor = UIColor.darkGray
+        l.textAlignment = .left
         return l
         }()
     
-    let cityValue: UILabel = {
+    let emailValue: UILabel = {
         let l = UILabel()
-        l.font = UIFont.systemFont(ofSize: 16)
+        l.font = UIFont.systemFont(ofSize: 18)
         l.textColor = UIColor.darkGray
+        l.textAlignment = .right
+        return l
+    }()
+    
+    let phoneText:  UILabel = {
+        let l = UILabel()
+        l.text = "   Phone"
+        l.font = UIFont.systemFont(ofSize: 18)
+        l.textColor = UIColor.darkGray
+        l.textAlignment = .left
+        return l
+        }()
+    
+    let phoneValue: UILabel = {
+        let l = UILabel()
+        l.font = UIFont.systemFont(ofSize: 18)
+        l.textColor = UIColor.darkGray
+        l.textAlignment = .right
         return l
     }()
     
@@ -77,6 +114,110 @@ class UserProfileVC: UICollectionViewController, UICollectionViewDelegateFlowLay
             return l
         }()
     
+    let primarySchoolText:  UILabel = {
+        let l = UILabel()
+        l.text = "   School"
+        l.font = UIFont.systemFont(ofSize: 18)
+        l.textColor = UIColor.darkGray
+        l.textAlignment = .left
+        return l
+        }()
+    
+    let primarySchoolValue: UILabel = {
+        let l = UILabel()
+        l.font = UIFont.systemFont(ofSize: 18)
+        l.textColor = UIColor.darkGray
+        l.textAlignment = .right
+        return l
+    }()
+    
+    let primaryDegreeText:  UILabel = {
+        let l = UILabel()
+        l.text = "   Degree"
+        l.font = UIFont.systemFont(ofSize: 18)
+        l.textColor = UIColor.darkGray
+        l.textAlignment = .left
+        return l
+        }()
+    
+    let primaryDegreeValue: UILabel = {
+        let l = UILabel()
+        l.font = UIFont.systemFont(ofSize: 18)
+        l.textColor = UIColor.darkGray
+        l.textAlignment = .right
+        return l
+    }()
+    
+    let primaryGPAText:  UILabel = {
+        let l = UILabel()
+        l.text = "   GPA"
+        l.font = UIFont.systemFont(ofSize: 18)
+        l.textColor = UIColor.darkGray
+        l.textAlignment = .left
+        return l
+        }()
+    
+    let primaryGPAValue: UILabel = {
+        let l = UILabel()
+        l.font = UIFont.systemFont(ofSize: 18)
+        l.textColor = UIColor.darkGray
+        l.textAlignment = .right
+        l.layer.borderColor = UIColor.black.cgColor
+        l.layer.borderWidth = 0.1
+        return l
+    }()
+    
+    let secondarySchoolText:  UILabel = {
+        let l = UILabel()
+        l.text = "   School"
+        l.font = UIFont.systemFont(ofSize: 18)
+        l.textColor = UIColor.darkGray
+        l.textAlignment = .left
+        return l
+        }()
+    
+    let secondarySchoolValue: UILabel = {
+        let l = UILabel()
+        l.font = UIFont.systemFont(ofSize: 18)
+        l.textColor = UIColor.darkGray
+        l.textAlignment = .right
+        return l
+    }()
+    
+    let secondaryDegreeText:  UILabel = {
+        let l = UILabel()
+        l.text = "   Degree"
+        l.font = UIFont.systemFont(ofSize: 18)
+        l.textColor = UIColor.darkGray
+        l.textAlignment = .left
+        return l
+        }()
+    
+    let secondaryDegreeValue: UILabel = {
+        let l = UILabel()
+        l.font = UIFont.systemFont(ofSize: 18)
+        l.textColor = UIColor.darkGray
+        l.textAlignment = .right
+        return l
+    }()
+    
+    let secondaryGPAText:  UILabel = {
+        let l = UILabel()
+        l.text = "   GPA"
+        l.font = UIFont.systemFont(ofSize: 18)
+        l.textColor = UIColor.darkGray
+        l.textAlignment = .left
+        return l
+        }()
+    
+    let secondaryGPAValue: UILabel = {
+        let l = UILabel()
+        l.font = UIFont.systemFont(ofSize: 18)
+        l.textColor = UIColor.darkGray
+        l.textAlignment = .right
+        return l
+    }()
+    
     let referenceButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("REFERENCES", for: .normal)
@@ -93,8 +234,47 @@ class UserProfileVC: UICollectionViewController, UICollectionViewDelegateFlowLay
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        var ref: DatabaseReference!
+
+        ref = Database.database().reference()
+        
+        let userID = Auth.auth().currentUser?.uid
+        let userEmail = Auth.auth().currentUser?.email
+        emailValue.text = userEmail
+        ref.child("user").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+            // Get user value
+            let value = snapshot.value as? NSDictionary
+            let name = value?["name"] as? String ?? ""
+            let phoneNumber = value?["phoneNumber"] as? String ?? ""
+            self.phoneValue.text = phoneNumber
+            }) { (error) in
+                print(error.localizedDescription)
+        }
+        
+        ref.child("user").child(userID!).child("education").observeSingleEvent(of: .value, with: { (snapshot) in
+            // Get user value
+            let value = snapshot.value as? NSDictionary
+            let primaryDegree = value?["primaryDegree"] as? String ?? ""
+            let primaryGPA = value?["primaryGPA"] as? String ?? ""
+            let primarySchool = value?["primarySchool"] as? String ?? ""
+            let secondaryGPA = value?["secondaryGPA"] as? String ?? ""
+            let secondaryDegree = value?["secondaryDegree"] as? String ?? ""
+            let secondarySchool = value?["secondarySchool"] as? String ?? ""
+            
+            self.primarySchoolValue.text = primarySchool
+            self.primaryDegreeValue.text = primaryDegree
+            self.primaryGPAValue.text = primaryGPA
+            self.secondarySchoolValue.text = secondarySchool
+            self.secondaryDegreeValue.text = secondaryDegree
+            self.secondaryGPAValue.text = secondaryGPA
+            
+            
+            }) { (error) in
+                print(error.localizedDescription)
+        }
+
+        
+ 
 
         // Register cell classes
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
@@ -111,7 +291,7 @@ class UserProfileVC: UICollectionViewController, UICollectionViewDelegateFlowLay
         configureLogoutButton()
         configureViewComponents()
         configureGeneralView()
-        
+
 
     }
 
@@ -131,17 +311,53 @@ class UserProfileVC: UICollectionViewController, UICollectionViewDelegateFlowLay
     
     func configureGeneralView() {
         
-        let cityStack = UIStackView(arrangedSubviews: [cityText, cityValue])
-        cityStack.axis = .horizontal
-        cityStack.distribution = .fillEqually
+        let emailStack = UIStackView(arrangedSubviews: [emailText, emailValue])
+        emailStack.axis = .horizontal
+        emailStack.distribution = .fillEqually
+        emailStack.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 40, paddingBottom: 0, paddingRight: 40, width: 0, height: 50)
         
-        let stackView = UIStackView(arrangedSubviews: [generalHeader, cityStack])
+        let phoneStack = UIStackView(arrangedSubviews: [phoneText, phoneValue])
+        phoneStack.axis = .horizontal
+        phoneStack.distribution = .fillEqually
+        phoneStack.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 40, paddingBottom: 0, paddingRight: 40, width: 0, height: 50)
+        
+        let psStack = UIStackView(arrangedSubviews: [primarySchoolText, primarySchoolValue])
+        psStack.axis = .horizontal
+        psStack.distribution = .fillEqually
+        psStack.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 40, paddingBottom: 0, paddingRight: 40, width: 0, height: 50)
+        
+        let pdStack = UIStackView(arrangedSubviews: [primaryDegreeText, primaryDegreeValue])
+        pdStack.axis = .horizontal
+        pdStack.distribution = .fillEqually
+        pdStack.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 40, paddingBottom: 0, paddingRight: 40, width: 0, height: 50)
+        
+        let pgStack = UIStackView(arrangedSubviews: [primaryGPAText, primaryGPAValue])
+        pgStack.axis = .horizontal
+        pgStack.distribution = .fillEqually
+        pgStack.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 40, paddingBottom: 0, paddingRight: 40, width: 0, height: 50)
+        
+        let ssStack = UIStackView(arrangedSubviews: [secondarySchoolText, secondarySchoolValue])
+        ssStack.axis = .horizontal
+        ssStack.distribution = .fillEqually
+        ssStack.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 40, paddingBottom: 0, paddingRight: 40, width: 0, height: 50)
+        
+        let sdStack = UIStackView(arrangedSubviews: [secondaryDegreeText, secondaryDegreeValue])
+        sdStack.axis = .horizontal
+        sdStack.distribution = .fillEqually
+        sdStack.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 40, paddingBottom: 0, paddingRight: 40, width: 0, height: 50)
+        
+        let sgStack = UIStackView(arrangedSubviews: [secondaryGPAText, secondaryGPAValue])
+        sgStack.axis = .horizontal
+        sgStack.distribution = .fillEqually
+        sgStack.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 40, paddingBottom: 0, paddingRight: 40, width: 0, height: 50)
+        
+        let stackView = UIStackView(arrangedSubviews: [generalHeader, emailStack, phoneStack, primaryEducationHeader, psStack, pdStack, pgStack, secondaryEducationHeader, ssStack, sdStack, sgStack])
         
         stackView.axis = .vertical
         stackView.spacing = 5
         
         view.addSubview(stackView)
-        stackView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 225, paddingLeft: 10, paddingBottom: 0, paddingRight: 10, width: 0, height: 0)
+        stackView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 225, paddingLeft: 20, paddingBottom: 0, paddingRight: 20, width: 0, height: 0)
     }
 
     

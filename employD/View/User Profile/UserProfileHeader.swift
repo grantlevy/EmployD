@@ -40,8 +40,8 @@ class UserProfileHeader: UICollectionViewCell {
         let button = UIButton(type: .system)
         button.setTitle("Edit Profile", for: .normal)
         button.layer.cornerRadius = 5
-        // button.backgroundColor = UIColor.appCyan
-        button.layer.borderColor = UIColor.appCyan.cgColor
+        button.backgroundColor = UIColor.appCyan.withAlphaComponent(0.2)
+        button.layer.borderColor = UIColor.appCyan.withAlphaComponent(0.5).cgColor
         button.layer.borderWidth = 1.5
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
         button.setTitleColor(.black, for: .normal)

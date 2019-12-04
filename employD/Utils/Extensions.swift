@@ -49,6 +49,10 @@ extension UIColor {
     static let appCyan = UIColor.rgb(red: 68, green: 215, blue: 182)
     
     static let appGray = UIColor.rgb(red: 104, green: 104, blue: 105)
+    
+    static let appLightGray = UIColor.rgb(red: 239, green: 239, blue: 239)
+    
+    static let appLightCyan = UIColor.rgb(red: 173, green: 255, blue: 237)
 }
 
 var imageCache = [String: UIImage]()

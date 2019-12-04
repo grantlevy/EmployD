@@ -12,10 +12,10 @@ import UIKit
 
 class SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
-    let salaryOptions = ["$50,000", "$60,000", "$75,000", "$100,000", "$150,000"]
-    let sizeOptions = ["<50", "50 - 100", "100 - 500", "500 - 2000", ">2000"]
-    let ratingOptions = ["1+", "2+", "3+", "4+"]
-    let typeOptions = ["Full Time", "Part Time", "Internship", "Co-op"]
+    let salaryOptions = [" ", "$50,000", "$60,000", "$75,000", "$100,000", "$150,000"]
+    let sizeOptions = [" ", "<50", "50 - 100", "100 - 500", "500 - 2000", ">2000"]
+    let ratingOptions = [" ", "1+", "2+", "3+", "4+"]
+    let typeOptions = [" ", "Full Time", "Part Time", "Internship", "Co-op"]
     
     let salaryPickerView = UIPickerView()
     let sizePickerView = UIPickerView()
@@ -89,7 +89,7 @@ class SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     let salaryLabel: UILabel = {
         let l = UILabel()
-        l.text = "Minimum Salary"
+        l.text = " Minimum Salary"
         l.font = UIFont.systemFont(ofSize: 16)
         l.textColor = UIColor.black
         l.textAlignment = .center
@@ -99,14 +99,14 @@ class SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     let salaryPicker: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Amount"
-        tf.backgroundColor = .lightGray
+        tf.backgroundColor = UIColor.appLightGray
         tf.borderStyle = .roundedRect
         return tf
     }()
     
     let sizeLabel: UILabel = {
         let l = UILabel()
-        l.text = "Company Size"
+        l.text = "    Company Size"
         l.font = UIFont.systemFont(ofSize: 16)
         l.textColor = UIColor.black
         l.textAlignment = .center
@@ -116,7 +116,7 @@ class SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     let sizePicker: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Employees"
-        tf.backgroundColor = .lightGray
+        tf.backgroundColor = UIColor.appLightGray
         tf.borderStyle = .roundedRect
         return tf
     }()
@@ -133,14 +133,14 @@ class SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     let ratingPicker: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Stars"
-        tf.backgroundColor = .lightGray
+        tf.backgroundColor = UIColor.appLightGray
         tf.borderStyle = .roundedRect
         return tf
     }()
     
     let typeLabel: UILabel = {
         let l = UILabel()
-        l.text = "Job Type"
+        l.text = "             Job Type"
         l.font = UIFont.systemFont(ofSize: 16)
         l.textColor = UIColor.black
         l.textAlignment = .center
@@ -150,9 +150,21 @@ class SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     let typePicker: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Select"
-        tf.backgroundColor = .lightGray
+        tf.backgroundColor = UIColor.appLightGray
         tf.borderStyle = .roundedRect
         return tf
+    }()
+    
+    let filterBorder: UIView = {
+        let v = UIView()
+        v.layer.borderColor = UIColor.black.cgColor
+        v.layer.borderWidth = 1
+        v.layer.backgroundColor = UIColor.white.cgColor
+        v.layer.shadowColor = UIColor.black.cgColor
+        v.layer.shadowOffset = CGSize(width: 0, height: 1.0)
+        v.layer.shadowOpacity = 0.6
+        v.layer.shadowRadius = 3.0
+        return v
     }()
     
     override func viewDidLoad() {
@@ -184,12 +196,12 @@ class SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     func configureFilters(show: Bool) {
         
-        let label = UITextField()
+        /* let label = UITextField()
         label.text = "           Advanced Search Options          "
         label.font = UIFont.systemFont(ofSize: 22)
         label.backgroundColor = UIColor.lightGray
         label.layer.borderColor = UIColor.black.cgColor
-        label.layer.borderWidth = 2
+        label.layer.borderWidth = 2 */
         
         
         let salaryStack = UIStackView(arrangedSubviews: [salaryLabel, salaryPicker])
@@ -216,16 +228,18 @@ class SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
         typeStack.alignment = .center
         typeStack.distribution = .fillEqually
         
-        let filterStack = UIStackView(arrangedSubviews: [label, salaryStack, sizeStack, ratingStack, typeStack])
+        let filterStack = UIStackView(arrangedSubviews: [salaryStack, sizeStack, ratingStack, typeStack])
         filterStack.axis = .vertical
-        filterStack.spacing = 10
+        filterStack.spacing = 15
         filterStack.alignment = .center
         filterStack.distribution = .fillEqually
     
+        view.addSubview(filterBorder)
         view.addSubview(filterStack)
         
         filterStack.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 340, paddingLeft: 20, paddingBottom: 0, paddingRight: 20, width: 0, height: 200)
         
+        filterBorder.anchor(top: filterStack.topAnchor, left: filterStack.leftAnchor, bottom: filterStack.bottomAnchor, right: filterStack.rightAnchor, paddingTop: -20, paddingLeft: -5, paddingBottom: -140, paddingRight: -5, width: 0, height: 360)
 
         salaryPickerView.delegate = self
         salaryPicker.inputView = salaryPickerView
@@ -241,8 +255,10 @@ class SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
         
         if show == true {
             filterStack.isHidden = false
+            filterBorder.isHidden = false
         } else {
             filterStack.isHidden = true
+            filterBorder.isHidden = true
         }
     }
     
