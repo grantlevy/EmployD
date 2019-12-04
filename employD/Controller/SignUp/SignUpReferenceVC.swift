@@ -44,6 +44,27 @@ class SignUpReferenceVC: UIViewController, UIImagePickerControllerDelegate {
         tf.borderStyle = .roundedRect
         tf.font = UIFont.systemFont(ofSize: 14)
         tf.autocorrectionType = .no
+        tf.autocapitalizationType = .none
+        return tf
+    }()
+    
+    let companyField: UITextField = {
+        let tf = UITextField()
+        tf.placeholder = "Company"
+        tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
+        tf.borderStyle = .roundedRect
+        tf.font = UIFont.systemFont(ofSize: 14)
+        tf.autocorrectionType = .no
+        return tf
+    }()
+    
+    let titleField: UITextField = {
+        let tf = UITextField()
+        tf.placeholder = "Title"
+        tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
+        tf.borderStyle = .roundedRect
+        tf.font = UIFont.systemFont(ofSize: 14)
+        tf.autocorrectionType = .no
         return tf
     }()
     
@@ -77,6 +98,7 @@ class SignUpReferenceVC: UIViewController, UIImagePickerControllerDelegate {
         tf.borderStyle = .roundedRect
         tf.font = UIFont.systemFont(ofSize: 14)
         tf.autocorrectionType = .no
+        tf.autocapitalizationType = .none
         return tf
     }()
     
@@ -86,6 +108,26 @@ class SignUpReferenceVC: UIViewController, UIImagePickerControllerDelegate {
         l.font = UIFont.boldSystemFont(ofSize: 22)
         l.textAlignment = .center
         return l
+    }()
+    
+    let aCompanyField: UITextField = {
+        let tf = UITextField()
+        tf.placeholder = "Company"
+        tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
+        tf.borderStyle = .roundedRect
+        tf.font = UIFont.systemFont(ofSize: 14)
+        tf.autocorrectionType = .no
+        return tf
+    }()
+    
+    let aTitleField: UITextField = {
+        let tf = UITextField()
+        tf.placeholder = "Title"
+        tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
+        tf.borderStyle = .roundedRect
+        tf.font = UIFont.systemFont(ofSize: 14)
+        tf.autocorrectionType = .no
+        return tf
     }()
     
     // GPA Text Box
@@ -177,17 +219,26 @@ class SignUpReferenceVC: UIViewController, UIImagePickerControllerDelegate {
         guard let primaryReference = referenceTextField.text else { return }
         guard let primaryContact = contactTextField.text else { return }
         guard let primaryRelationship = relationshipTextField.text else { return }
+        guard let primaryCompany = companyField.text else { return }
+        guard let primaryTitle = titleField.text else { return }
         guard let secondaryReference = aReferenceTextField.text else { return }
         guard let secondaryContact = aContactTextField.text else { return }
         guard let secondaryRelationship = aRelationshipTextField.text else { return }
+        guard let secondaryCompany = aCompanyField.text else { return }
+        guard let secondaryTitle = aTitleField.text else { return }
+        
     
         // guard let uid = authResult?.user.uid else { return }
         
         let dictionaryValues = ["Reference": primaryReference,
                                 "Contact": primaryContact,
+                                "Company" : primaryCompany,
+                                "Title" : primaryTitle,
                                 "Relationship": primaryRelationship,
                                 "Alt Reference": secondaryReference,
                                 "Alt Contact": secondaryContact,
+                                "Alt Company" : secondaryCompany,
+                                "Alt Title" : secondaryTitle,
                                 "Alt Relationship": secondaryRelationship,]
     
         let values = ["reference": dictionaryValues]
@@ -204,12 +255,12 @@ class SignUpReferenceVC: UIViewController, UIImagePickerControllerDelegate {
     
     func configureViewComponents() {
         
-        let primaryView = UIStackView(arrangedSubviews: [primaryField, referenceTextField, contactTextField, relationshipTextField])
+        let primaryView = UIStackView(arrangedSubviews: [primaryField, referenceTextField, contactTextField, companyField, titleField, relationshipTextField])
         primaryView.axis = .vertical
         primaryView.spacing = 10
         primaryView.distribution = .fillProportionally
         
-        let secondaryView = UIStackView(arrangedSubviews: [secondaryField, aReferenceTextField, aContactTextField, aRelationshipTextField])
+        let secondaryView = UIStackView(arrangedSubviews: [secondaryField, aReferenceTextField, aContactTextField, aCompanyField, aTitleField, aRelationshipTextField])
         secondaryView.axis = .vertical
         secondaryView.spacing = 10
         secondaryView.distribution = .fillProportionally
@@ -220,7 +271,7 @@ class SignUpReferenceVC: UIViewController, UIImagePickerControllerDelegate {
         stackView.distribution = .fillProportionally
         
         view.addSubview(stackView)
-        stackView.anchor(top: pageText.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 40, paddingLeft: 40, paddingBottom: 0, paddingRight: 40, width: 0, height: 360)
+        stackView.anchor(top: pageText.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 40, paddingLeft: 40, paddingBottom: 0, paddingRight: 40, width: 0, height: 0)
     }
     
 }
