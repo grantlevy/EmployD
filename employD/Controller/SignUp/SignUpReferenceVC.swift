@@ -19,12 +19,6 @@ class SignUpReferenceVC: UIViewController, UIImagePickerControllerDelegate {
         return l
     }()
     
-//    let progressBar: UIImageView = {
-//        let im = UIImageView(image: #imageLiteral(resourceName: "step1"))
-//        im.contentMode = .scaleAspectFill
-//        return im
-//    }()
-    
     // School Text Box
     let referenceTextField: UITextField = {
         let tf = UITextField()

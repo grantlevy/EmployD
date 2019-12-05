@@ -276,7 +276,7 @@ class UserProfileVC: UICollectionViewController, UICollectionViewDelegateFlowLay
         let l = UILabel()
         l.font = UIFont.systemFont(ofSize: 18)
         l.textColor = UIColor.darkGray
-        l.textAlignment = .center
+        l.textAlignment = .left
         return l
     }()
     
@@ -316,7 +316,7 @@ class UserProfileVC: UICollectionViewController, UICollectionViewDelegateFlowLay
     
     let extraText:  UILabel = {
         let l = UILabel()
-        l.text = "       None Listed"
+        l.text = "   None Listed"
         l.font = UIFont.systemFont(ofSize: 18)
         l.textColor = UIColor.darkGray
         l.textAlignment = .left
@@ -337,7 +337,7 @@ class UserProfileVC: UICollectionViewController, UICollectionViewDelegateFlowLay
         let l = UILabel()
         l.font = UIFont.systemFont(ofSize: 18)
         l.textColor = UIColor.darkGray
-        l.textAlignment = .right
+        l.textAlignment = .left
 
         return l
     }()
@@ -355,7 +355,7 @@ class UserProfileVC: UICollectionViewController, UICollectionViewDelegateFlowLay
         let l = UILabel()
         l.font = UIFont.systemFont(ofSize: 18)
         l.textColor = UIColor.darkGray
-        l.textAlignment = .right
+        l.textAlignment = .left
 
         return l
     }()
@@ -377,7 +377,7 @@ class UserProfileVC: UICollectionViewController, UICollectionViewDelegateFlowLay
         button.layer.borderWidth = 0.5
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
         button.setTitleColor(.darkGray, for: .normal)
-        // button.addTarget(self, action: #selector(handleReferenceButton), for: .touchUpInside)
+        button.addTarget(self, action: #selector(handleReferenceButton), for: .touchUpInside)
         return button
     }()
     
@@ -435,9 +435,9 @@ class UserProfileVC: UICollectionViewController, UICollectionViewDelegateFlowLay
             let extracurricular = value?["Extracurricular"] as? String ?? ""
             
             self.companyValue.text = company
-            self.jobTitleValue.text =  company + " - " + position
+            self.jobTitleValue.text =  "   " + company + " - " + position
             self.employmentDateValue.text = dates
-            self.skillValue.text = "       " + skill
+            self.skillValue.text = "   " + skill
             self.levelValue.text = level
             self.projectValue.text = project
             self.extraValue.text = extracurricular
@@ -447,28 +447,29 @@ class UserProfileVC: UICollectionViewController, UICollectionViewDelegateFlowLay
                 print(error.localizedDescription)
         }
         
-        /* ref.child("user").child(userID!).child("reference").observeSingleEvent(of: .value, with: { (snapshot) in
+        ref.child("user").child(userID!).child("reference").observeSingleEvent(of: .value, with: { (snapshot) in
             // Get user value
             let value = snapshot.value as? NSDictionary
             let pName = value?["Reference"] as? String ?? ""
-            let pTitle = value?["Position"] as? String ?? ""
-            let pContact = value?["Experience Level"] as? String ?? ""
-            let aName = value?["Employment Dates"] as? String ?? ""
-            let aTitle = value?["Skill"] as? String ?? ""
-            let aContact = value?["Project Link"] as? String ?? ""
+            let pTitle = value?["Title"] as? String ?? ""
+            let pCompany = value?["Company"] as? String ?? ""
+            // let pRelationship = value?["Relationship"] as? String ?? ""
+            // let pContact = value?["Contact"] as? String ?? ""
+            let aName = value?["Alt Reference"] as? String ?? ""
+            let aTitle = value?["Alt Title"] as? String ?? ""
+            let aCompany = value?["Alt Company"] as? String ?? ""
+            // let aRelationship = value?["Alt Relationship"] as? String ?? ""
+            // let aContact = value?["Alt Contact"] as? String ?? ""
             
-            self.companyValue.text = company
-            self.jobTitleValue.text =  company + " - " + position
-            self.employmentDateValue.text = dates
-            self.skillValue.text = "       " + skill
-            self.levelValue.text = level
-            self.projectValue.text = project
-            self.extraValue.text = extracurricular
+            self.positionValue.text = pCompany + " - " + pTitle
+            self.nameValue.text = "   " + pName
+            self.aPositionValue.text = aCompany + " - " + aTitle
+            self.aNameValue.text = "   " + aName
             
             
             }) { (error) in
                 print(error.localizedDescription)
-        } */
+        }
 
  
 
@@ -509,42 +510,42 @@ class UserProfileVC: UICollectionViewController, UICollectionViewDelegateFlowLay
         
         let emailStack = UIStackView(arrangedSubviews: [emailText, emailValue])
         emailStack.axis = .horizontal
-        emailStack.distribution = .fillEqually
+        emailStack.distribution = .fillProportionally
         emailStack.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 40, paddingBottom: 0, paddingRight: 40, width: 0, height: 50)
         
         let phoneStack = UIStackView(arrangedSubviews: [phoneText, phoneValue])
         phoneStack.axis = .horizontal
-        phoneStack.distribution = .fillEqually
+        phoneStack.distribution = .fillProportionally
         phoneStack.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 40, paddingBottom: 0, paddingRight: 40, width: 0, height: 50)
         
         let psStack = UIStackView(arrangedSubviews: [primarySchoolText, primarySchoolValue])
         psStack.axis = .horizontal
-        psStack.distribution = .fillEqually
+        psStack.distribution = .fillProportionally
         psStack.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 40, paddingBottom: 0, paddingRight: 40, width: 0, height: 50)
         
         let pdStack = UIStackView(arrangedSubviews: [primaryDegreeText, primaryDegreeValue])
         pdStack.axis = .horizontal
-        pdStack.distribution = .fillEqually
+        pdStack.distribution = .fillProportionally
         pdStack.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 40, paddingBottom: 0, paddingRight: 40, width: 0, height: 50)
         
         let pgStack = UIStackView(arrangedSubviews: [primaryGPAText, primaryGPAValue])
         pgStack.axis = .horizontal
-        pgStack.distribution = .fillEqually
+        pgStack.distribution = .fillProportionally
         pgStack.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 40, paddingBottom: 0, paddingRight: 40, width: 0, height: 50)
         
         let ssStack = UIStackView(arrangedSubviews: [secondarySchoolText, secondarySchoolValue])
         ssStack.axis = .horizontal
-        ssStack.distribution = .fillEqually
+        ssStack.distribution = .fillProportionally
         ssStack.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 40, paddingBottom: 0, paddingRight: 40, width: 0, height: 50)
         
         let sdStack = UIStackView(arrangedSubviews: [secondaryDegreeText, secondaryDegreeValue])
         sdStack.axis = .horizontal
-        sdStack.distribution = .fillEqually
+        sdStack.distribution = .fillProportionally
         sdStack.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 40, paddingBottom: 0, paddingRight: 40, width: 0, height: 50)
         
         let sgStack = UIStackView(arrangedSubviews: [secondaryGPAText, secondaryGPAValue])
         sgStack.axis = .horizontal
-        sgStack.distribution = .fillEqually
+        sgStack.distribution = .fillProportionally
         sgStack.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 40, paddingBottom: 0, paddingRight: 40, width: 0, height: 50)
         
         generalStackView = UIStackView(arrangedSubviews: [generalHeader, emailStack, phoneStack, primaryEducationHeader, psStack, pdStack, pgStack, secondaryEducationHeader, ssStack, sdStack, sgStack])
@@ -557,17 +558,17 @@ class UserProfileVC: UICollectionViewController, UICollectionViewDelegateFlowLay
         
         let workStack = UIStackView(arrangedSubviews: [jobTitleValue, employmentDateValue])
         workStack.axis = .horizontal
-        workStack.distribution = .fillEqually
+        workStack.distribution = .fillProportionally
         workStack.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 40, paddingBottom: 0, paddingRight: 40, width: 0, height: 50)
         
         let skillStack = UIStackView(arrangedSubviews: [skillValue, levelValue])
         skillStack.axis = .horizontal
-        skillStack.distribution = .fillEqually
+        skillStack.distribution = .fillProportionally
         skillStack.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 40, paddingBottom: 0, paddingRight: 40, width: 0, height: 50)
         
         let extraStack = UIStackView(arrangedSubviews: [extraText, extraValue])
         extraStack.axis = .horizontal
-        extraStack.distribution = .fillEqually
+        extraStack.distribution = .fillProportionally
         extraStack.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 40, paddingBottom: 0, paddingRight: 40, width: 0, height: 50)
         
         experienceStackView = UIStackView(arrangedSubviews: [workHeader, workStack, skillsHeader, skillStack, extraHeader, extraStack])
@@ -578,6 +579,25 @@ class UserProfileVC: UICollectionViewController, UICollectionViewDelegateFlowLay
         view.addSubview(experienceStackView)
         experienceStackView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 225, paddingLeft: 20, paddingBottom: 0, paddingRight: 20, width: 0, height: 0)
         experienceStackView.isHidden = true
+        
+        let pReferenceStack = UIStackView(arrangedSubviews: [nameValue, positionValue])
+        pReferenceStack.axis = .horizontal
+        pReferenceStack.distribution = .fillProportionally
+        pReferenceStack.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 40, paddingBottom: 0, paddingRight: 40, width: 0, height: 50)
+        
+        let aReferenceStack = UIStackView(arrangedSubviews: [aNameValue, aPositionValue])
+        aReferenceStack.axis = .horizontal
+        aReferenceStack.distribution = .fillProportionally
+        aReferenceStack.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 40, paddingBottom: 0, paddingRight: 40, width: 0, height: 50)
+        
+        referenceStackView = UIStackView(arrangedSubviews: [referenceHeader, pReferenceStack, aReferenceStack])
+        
+        referenceStackView.axis = .vertical
+        referenceStackView.spacing = 5
+        
+        view.addSubview(referenceStackView)
+        referenceStackView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 225, paddingLeft: 20, paddingBottom: 0, paddingRight: 20, width: 0, height: 0)
+        referenceStackView.isHidden = true
         
     }
 
@@ -678,6 +698,7 @@ class UserProfileVC: UICollectionViewController, UICollectionViewDelegateFlowLay
     @objc func handleGeneralButton() {
         generalStackView.isHidden = false
         experienceStackView.isHidden = true
+        referenceStackView.isHidden = true
         
         generalButton.layer.borderColor = UIColor.lightGray.cgColor
         generalButton.layer.backgroundColor = UIColor.darkGray.cgColor
@@ -686,25 +707,47 @@ class UserProfileVC: UICollectionViewController, UICollectionViewDelegateFlowLay
         experienceButton.layer.borderColor = UIColor.lightGray.cgColor
         experienceButton.layer.backgroundColor = UIColor.white.cgColor
         experienceButton.setTitleColor(.darkGray, for: .normal)
+        
+        referenceButton.layer.borderColor = UIColor.lightGray.cgColor
+        referenceButton.layer.backgroundColor = UIColor.white.cgColor
+        referenceButton.setTitleColor(.darkGray, for: .normal)
     }
     
     @objc func handleExperienceButton() {
         generalStackView.isHidden = true
         experienceStackView.isHidden = false
+        referenceStackView.isHidden = true
+        
+        generalButton.layer.borderColor = UIColor.lightGray.cgColor
+        generalButton.layer.backgroundColor = UIColor.white.cgColor
+        generalButton.setTitleColor(.darkGray, for: .normal)
         
         experienceButton.layer.borderColor = UIColor.lightGray.cgColor
         experienceButton.layer.backgroundColor = UIColor.darkGray.cgColor
         experienceButton.setTitleColor(.white, for: .normal)
         
+        referenceButton.layer.borderColor = UIColor.lightGray.cgColor
+        referenceButton.layer.backgroundColor = UIColor.white.cgColor
+        referenceButton.setTitleColor(.darkGray, for: .normal)
+    }
+
+    @objc func handleReferenceButton() {
+        generalStackView.isHidden = true
+        experienceStackView.isHidden = true
+        referenceStackView.isHidden = false
+        
         generalButton.layer.borderColor = UIColor.lightGray.cgColor
         generalButton.layer.backgroundColor = UIColor.white.cgColor
         generalButton.setTitleColor(.darkGray, for: .normal)
+        
+        experienceButton.layer.borderColor = UIColor.lightGray.cgColor
+        experienceButton.layer.backgroundColor = UIColor.white.cgColor
+        experienceButton.setTitleColor(.darkGray, for: .normal)
+        
+        referenceButton.layer.borderColor = UIColor.lightGray.cgColor
+        referenceButton.layer.backgroundColor = UIColor.darkGray.cgColor
+        referenceButton.setTitleColor(.white, for: .normal)
     }
-//
-//    @objc func handleReferenceButton() {
-//        let newViewController = UserReferenceVC()
-//        navigationController?.pushViewController(newViewController, animated: true)
-//    }
 
 
 

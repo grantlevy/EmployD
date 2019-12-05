@@ -18,8 +18,6 @@
 		348C7882239555190082CB6B /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348C7881239555190082CB6B /* SearchVC.swift */; };
 		348C788A23957CC60082CB6B /* SpotifyListingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348C788923957CC60082CB6B /* SpotifyListingVC.swift */; };
 		348C788C239594FF0082CB6B /* JobListingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348C788B239594FF0082CB6B /* JobListingVC.swift */; };
-		348C78902395B07A0082CB6B /* UserExperienceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348C788F2395B07A0082CB6B /* UserExperienceVC.swift */; };
-		348C78922395D1B80082CB6B /* UserReferenceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348C78912395D1B80082CB6B /* UserReferenceVC.swift */; };
 		348C78942395E04A0082CB6B /* JobPostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348C78932395E04A0082CB6B /* JobPostVC.swift */; };
 		348C7896239630800082CB6B /* SignUpEducationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348C7895239630800082CB6B /* SignUpEducationVC.swift */; };
 		348C78982396DA700082CB6B /* SignUpExperienceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348C78972396DA700082CB6B /* SignUpExperienceVC.swift */; };
@@ -49,8 +47,6 @@
 		348C7881239555190082CB6B /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		348C788923957CC60082CB6B /* SpotifyListingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyListingVC.swift; sourceTree = "<group>"; };
 		348C788B239594FF0082CB6B /* JobListingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobListingVC.swift; sourceTree = "<group>"; };
-		348C788F2395B07A0082CB6B /* UserExperienceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserExperienceVC.swift; sourceTree = "<group>"; };
-		348C78912395D1B80082CB6B /* UserReferenceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserReferenceVC.swift; sourceTree = "<group>"; };
 		348C78932395E04A0082CB6B /* JobPostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobPostVC.swift; sourceTree = "<group>"; };
 		348C7895239630800082CB6B /* SignUpEducationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpEducationVC.swift; sourceTree = "<group>"; };
 		348C78972396DA700082CB6B /* SignUpExperienceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpExperienceVC.swift; sourceTree = "<group>"; };
@@ -86,8 +82,6 @@
 			isa = PBXGroup;
 			children = (
 				3410BA3023932E2800720759 /* UserProfileVC.swift */,
-				348C788F2395B07A0082CB6B /* UserExperienceVC.swift */,
-				348C78912395D1B80082CB6B /* UserReferenceVC.swift */,
 			);
 			path = UserProfile;
 			sourceTree = "<group>";
@@ -365,7 +359,6 @@
 			files = (
 				348C789A2396DA830082CB6B /* SignUpReferenceVC.swift in Sources */,
 				348C78982396DA700082CB6B /* SignUpExperienceVC.swift in Sources */,
-				348C78902395B07A0082CB6B /* UserExperienceVC.swift in Sources */,
 				348C7882239555190082CB6B /* SearchVC.swift in Sources */,
 				3410BA3323937FE000720759 /* UserProfileHeader.swift in Sources */,
 				348C78942395E04A0082CB6B /* JobPostVC.swift in Sources */,
@@ -373,7 +366,6 @@
 				34DCD06723918F9500745CAB /* AppDelegate.swift in Sources */,
 				3410BA3123932E2800720759 /* UserProfileVC.swift in Sources */,
 				3410BA2B23932D8A00720759 /* HomeVC.swift in Sources */,
-				348C78922395D1B80082CB6B /* UserReferenceVC.swift in Sources */,
 				3410BA2923932B7400720759 /* MainTabVC.swift in Sources */,
 				348C789C2396E2290082CB6B /* MicrosoftListingVC.swift in Sources */,
 				348C788C239594FF0082CB6B /* JobListingVC.swift in Sources */,
