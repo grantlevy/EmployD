@@ -13,7 +13,7 @@ Semester project for CS5340
 
         i. `install npm`
     
-        ii. `npm install -g firebase tools`
+        ii. `npm install -g firebase-tools`
 
         iii. optional - update npm `npm install -g n`
 
