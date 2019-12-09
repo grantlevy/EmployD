@@ -2,7 +2,7 @@
 Semester project for CS5340
 
 ### How to use?
-1. Download Xcode
+1. Download Xcode (Requires a Mac)
 2. Download Swift if required using: https://swift.org/download/#releases
 3. May require the command `$ export TOOLCHAINS=swift` to be run in terminal
 4. From the command line - install Firebase:
